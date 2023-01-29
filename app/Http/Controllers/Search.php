@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-
 class Search extends Controller
 {
     public function search(Request $request)
@@ -13,6 +11,6 @@ class Search extends Controller
     $results = Category::where('name', 'like', '%'.$search.'%')
         ->orWhere('description', 'like', '%'.$search.'%')
         ->get();
-    return view('search', ['results' => $results]);
+    return view('search', ['results' =>$results]);
 }
 }
