@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Search;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\MenuController;
@@ -10,7 +9,9 @@ use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\LandingPage;
+use App\Http\Controllers\Search;
+use App\Http\Controllers\Contact;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,23 @@ use App\Http\Controllers\LandingPage;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', function () {
+    return view('layouts.landingPage');
+});
+Route::get('/contact', function () {
+    return view('contact');
+});
+Route::get('/about', function () {
+    return view('about');
+});
+Route::get('/reservation', function () {
+    return view('reservation');
+});
+
+Route::get('/login', function () {
+    return view('auth.login');
+});
 
 // Route::get('/login', function () {
 //     return view('welcome');
@@ -35,20 +53,6 @@ use App\Http\Controllers\LandingPage;
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::get('/admin', function () {
-//     return view('layouts.admin');
-// })->middleware(['auth'])->name('admin');
-
-Route::get('/', function () {
-    return view('layouts.landingPage');
-});
-
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-
-
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -56,28 +60,13 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+// Route::get('/admin', function () {
+//     return view('layouts.admin');
+// })->middleware(['auth'])->name('admin');
 
-
-Route::get('/landingPage', [LandingPage::class , 'index'])->name('landingPage');
-
-Route::get('/yourreservation' ,[LandingPage::class , 'reservation_show'])->name('yourreservation');
-
-Route::get('/{reservation}/LandingPageDelete' ,[LandingPage::class , 'delete'])->name('delete');
-
-Route::get('/{reservation}/editYourReservation' ,[LandingPage::class , 'editReservation'])->name('editYourReservation');
-
-Route::post('/{reservation}/editFormReservation' ,[LandingPage::class , 'updateReservation'])->name('updateReservation');
-
-
-Route::get('/userReservation' , function(){
-    return view('layouts.userReservation');
-});
-
-
-
-Route::get('/reseForm/{category_id}/create',[LandingPage::class , 'create'])->name('reseForm-create');
-Route::post('/reservationStore' , [LandingPage::class , 'store'])->name('LandingPage.store');
-
+Route::get('/landingPage', function () {
+    return view('layouts.landingPage');
+})->name('landingPage');
 
 
 Route::middleware(['auth' , 'admin'])->name('admin.')->prefix('admin')->group(function(){
@@ -87,8 +76,6 @@ Route::middleware(['auth' , 'admin'])->name('admin.')->prefix('admin')->group(fu
     Route::get('/category/{category}' , [CategoryController::class , 'destroy'])->name('cat-destroy');
     Route::resource('/menu' , MenuController::class);
     Route::resource('/reservation' , ReservationController::class);
-    // Route::post('/reservation/{reservation}' , [ReservationController::class , 'update'])->name('reservation-cancle');
-    Route::get('/reservation/{reservation}' , [ReservationController::class , 'destroy'])->name('reservation-approve');
     Route::resource('/table' , TableController::class);
     Route::resource('/user' , UserController::class);
     Route::get('/user/{user}' , [UserController::class , 'destroy'])->name('user-destroy');
@@ -96,9 +83,6 @@ Route::middleware(['auth' , 'admin'])->name('admin.')->prefix('admin')->group(fu
 });
 
 Route::post('/search' , [Search::class , 'search'])->name('search');
-
-
-
 
 
 

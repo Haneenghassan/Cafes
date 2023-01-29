@@ -21,9 +21,7 @@ return new class extends Migration
             $table->string('tel_number');
             $table->dateTime('res_date');
             $table->integer('guest_number');
-            $table->foreignId('table_id')->constrained('tables')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->unsignedBigInteger('table_id');
             $table->timestamps();
         });
     }

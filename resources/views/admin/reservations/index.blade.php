@@ -84,116 +84,128 @@
     <div class="content">
 
 
-       <h1>Reservation</h1>
+       <h1>reservation</h1>
 
-
-       <div class="container-fluid pt-4 px-4" style="margin-bottom: 30px;">
+        {{-- <div class="container-fluid pt-4 px-4">
             <div class="row g-4">
-                <div class="col-12">
-                    <div class="bg-secondary rounded h-100 p-4" style="background-color: #fff !important; ">
-                        <h5 class="mb-4">Accepted Table</h5>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Restaurant</th>
-                                        <th scope="col">Table</th>
-                                        <th scope="col">Guest</th>
-                                        <th scope="col">Location</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Cancel</th>
-                                        {{-- <th scope="col">Approve</th> --}}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $i = 1; ?>
-                                    @foreach ($data as $item)
-                                    @if ($item['Status'] == 'Reserved')
-                                        <tr>
-                                            <th scope="col">{{$i++}}</th>
-                                            <th scope="col">{{$item['Name']}}</th>
-                                            <th scope="col">{{$item['Date']}}</th>
-                                            <th scope="col">{{$item['Restaurant']}}</th>
-                                            <th scope="col">{{$item['Table']}}</th>
-                                            <th scope="col">{{$item['Guest']}}</th>
-                                            <th scope="col">{{$item['Location']}}</th>
-                                            <th scope="col" id="change">{{$item['Status']}}</th>
-                                            <th scope="col"><a href="{{route('admin.reservation.edit' , ['reservation'=>$item['id']])}}"><button style="background-color: red; color:white; padding:5px; border-radius:4px">Cancel</button></a></th>
-                                            {{-- <th scope="col"><a href="{{route('admin.reservation.destroy' , ['reservation'=>$item['id']])}}"><button style="background-color: green; color:white; padding:5px; border-radius:4px">Accept</button></a></th> --}}
-                                        </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4" style="background-color: #fff !important; ">
+                        <i class="fa fa-chart-line fa-3x text-primary" style="color:rgb(0, 0, 69) !important"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Total Apartments On Rent In Website</p>
+                            <h6 class="mb-0" style="color:black !important; margin-left: 9rem;">54</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4" style="background-color: #fff !important; ">
+                        <i class="fa fa-chart-bar fa-3x text-primary" style="color:rgb(0, 0, 69) !important"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Total Apartments On Sell In Website</p>
+                            <h6 class="mb-0" style="color:black !important; margin-left: 9rem;">22</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4" style="background-color: #fff !important; ">
+                        <i class="fa fa-chart-area fa-3x text-primary" style="color:rgb(0, 0, 69) !important"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Pending Requests To Rent Apartment</p>
+                            <h6 class="mb-0" style="color:black !important; margin-left: 9rem;">4</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4" style="background-color: #fff !important; ">
+                        <i class="fa fa-chart-pie fa-3x text-primary" style="color:rgb(0, 0, 69) !important"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Pending Requests To Sell Apartment</p>
+                            <h6 class="mb-0" style="color:black !important; margin-left: 9rem;">3</h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Sales Chart End -->
 
-        <div class="container-fluid pt-4 px-4" style="margin-bottom: 30px;">
+        <div class="container-fluid pt-4 px-4">
             <div class="row g-4">
-                <div class="col-12">
-                    <div class="bg-secondary rounded h-100 p-4" style="background-color: #fff !important; ">
-                        <h5 class="mb-4">Pending Table</h5>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Restaurant</th>
-                                        <th scope="col">Table</th>
-                                        <th scope="col">Guest</th>
-                                        <th scope="col">Location</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Cancel</th>
-                                        <th scope="col">Approve</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $i = 1; ?>
-                                    @foreach ($data as $item)
-                                    @if ($item['Status'] == 'Pending')
-                                        <tr>
-                                            <th scope="col">{{$i++}}</th>
-                                            <th scope="col">{{$item['Name']}}</th>
-                                            <th scope="col">{{$item['Date']}}</th>
-                                            <th scope="col">{{$item['Restaurant']}}</th>
-                                            <th scope="col">{{$item['Table']}}</th>
-                                            <th scope="col">{{$item['Guest']}}</th>
-                                            <th scope="col">{{$item['Location']}}</th>
-                                            <th scope="col" id="change">{{$item['Status']}}</th>
-                                            <th scope="col"><a onclick="changeColorCancel()" href="{{route('admin.reservation.edit' , ['reservation'=>$item['id']])}}"><button style="background-color: red; color:white; padding:5px; border-radius:4px">Cancel</button></a></th>
-                                            <th scope="col"><a onclick="changeColorAccept()" href="{{route('admin.reservation.destroy' , ['reservation'=>$item['id']])}}"><button style="background-color: green; color:white; padding:5px; border-radius:4px">Accept</button></a></th>
-                                        </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
+                <div class="col-sm-12 col-xl-6">
+                    <div class="bg-secondary text-center rounded p-4" style="background-color: #fff !important; ">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <h6 class="mb-0" style="color:black !important">Worldwide Sales</h6>
                         </div>
+                        <img src="https://www.imf.org/wp-content/uploads/2021/12/COTW-FDI-update.gif" width="320px">
                     </div>
+                </div>
+                <div class="col-sm-12 col-xl-6">
+                    <div class="bg-secondary text-center rounded p-4" style="background-color: #fff !important; ">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <h6 class="mb-0" style="color:black !important">Salse & Revenue</h6>
+                        </div>
+                        <img src="https://exceljet.net/sites/default/files/images/chart/inline/income%20statement%20annual%20final.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sales Chart End -->
+
+
+        <!-- Recent Sales Start -->
+        <div class="container-fluid pt-4 px-4">
+            <div class="bg-secondary text-center rounded p-4" style="background-color: #fff !important; ">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0" style="color:black !important">Recent Customers</h6>
+                </div>
+                <div class="table-responsive">
+                    <table class="table text-start align-middle table-bordered table-hover mb-0">
+                        <thead>
+                            <tr class="text-white">
+                                <th scope="col" style="color:black !important">Customer Name</th>
+                                <th scope="col" style="color:black !important">Number Of Visit</th>
+                                <th scope="col" style="color:black !important">Number Of Contact With Owner</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mandala Quilling</td>
+                                <td>$530</td>
+                                <td>Excellent</td>
+                            </tr>
+                            <tr>
+                                <td>Realistic and real</td>
+                                <td>$430</td>
+                                <td>Amazing</td>
+                            </tr>
+                            <tr>
+                                <td>Sun and Moon</td>
+                                <td>395</td>
+                                <td>Very Good</td>
+                            </tr>
+                            <tr>
+                                <td>Acrylic and gold leaf</td>
+                                <td>$350</td>
+                                <td>Interesting Product</td>
+                            </tr>
+                            <tr>
+                                <td>Resin Art Inspo</td>
+                                <td>$285</td>
+                                <td>Very Good</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Content End -->
 
 
-<script>
+    <!-- Back to Top -->
+</div> --}}
 
-// function changeColorCancel(){
-//     document.getElementById("change").style.color = 'red'
-// }
-// function changeColorAccept(){
-//     document.getElementById("change").style.color = 'green'
-// }
 
-</script>
 
 
 

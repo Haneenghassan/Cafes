@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('guest_number');
             $table->string('status')->default('avaliable');
             $table->string('location');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
