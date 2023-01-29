@@ -44,6 +44,7 @@ class CategoryController extends Controller
         // $img = $request->file('image')->storeAs('public/image', $image);
         // return $image;
         // return $img;
+
         $category = new Category;
 
         $image = $request->file('image')->getClientOriginalName();
