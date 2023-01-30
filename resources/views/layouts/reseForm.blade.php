@@ -53,6 +53,7 @@
     </nav>
 
 
+
     @if (auth()->check())
 
 <div class="container-fluid pt-5 px-4 mt-3 d-flex">
@@ -119,22 +120,45 @@
   
 
 
-        @else
 
-            {{view('auth.login')}}
+    @if (auth()->check())
 
-        @endif
+        <h1>Reservation</h1>
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-secondary rounded h-100 p-4" style="background-color: #fff !important; ">
+                    <h5 class="mb-4">Add New reservation</h5>
+                    <form action="{{route('goToPartTwo')}}" method="POST">
+                        @csrf
+
+                        <div class="mb-3">
+                            <label class="form-label">res_date</label>
+                                <input type="datetime-local" name="res_date" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="hidden" value="{{$categories->id}}" name="category_id" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Choose Date</button>
+                    </form>
+                </div>
+            </div>
+
 
     </div>
 </div>
 
 <div style="height: 2%"></div>
-            @include('layouts.footer')
+        
 
-        <script>
+            @else
 
-        </script>
+                    {{view('auth.login')}}
+
+                    @endif
+
+                    @include('layouts.footer')
 
 </body>
 
 </html>
+

@@ -6,6 +6,7 @@ use App\Models\Table;
 use App\Models\Category;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class LandingPage extends Controller
 {
@@ -92,13 +93,14 @@ class LandingPage extends Controller
 
 
 
-    public function editReservation($reservation)
+    public function editReservation(Request $request , $reservation)
     {
+        $a= $request->input('res_date');
+        $b = strtotime($request->input('res_date'));
+        Session::put('EditReservatio_DateAndTime' , $a);
+        Session::put('EditReservatio_Date' , $b);
         $reser = Reservation::with('Category', 'User' , 'Table')->get()->where('id' , $reservation);
-        // dd($reser->category);
-        // $data = [];
         foreach ( $reser as $singleData ){
-            // dd($singleData->Category->name);
             $data = [
                 'id'=> $singleData->id,
                 'first_name' => $singleData->first_name,
@@ -117,8 +119,8 @@ class LandingPage extends Controller
         };
 
         $tables = Table::get()->where('category_id' , $data['category_id']);
-        // dd($data);
-        return view('layouts.editFormReservation' , compact('data' , 'tables'));
+        $reservation = Reservation::get();
+        return view('layouts.editFormReservation' , compact('data' , 'tables' , 'reservation'));
     }
 
 
@@ -138,5 +140,51 @@ class LandingPage extends Controller
             'status'=>'Pending',
         ]);
         return redirect('/yourreservation');
+    }
+
+    public function sessionDate(Request $request)
+    {
+        // echo $request->input('res_date').'<br>';
+        $y= $request->input('res_date');
+        $x = strtotime($request->input('res_date'));
+        $category_id = $request->input('category_id');
+        Session::put('Reservatio_Date' , $x);
+        Session::put('Reservatio_DateAndTime' , $y);
+        // return $x;
+        return redirect("/formPartTwo/$category_id/createPartTwo");
+    }
+
+    public function createPartTwo($category_id)
+    {
+        // return $category_id;
+        // return 'Form 2 Form 2 Form 2 Form 2 Form 2';
+        $categories = Category::find($category_id);
+        $tables = Table::get()->where('category_id' , $category_id);
+        $reservation = Reservation::get()->where('category_id' , $category_id);
+        // dd($table);
+        return view("layouts.formPartTwo" , ['categories'=>$categories , 'tables'=>$tables , 'reservation'=>$reservation]);
+    }
+
+    public function firstFormEdit($reservation){
+        $reser = Reservation::with('Category', 'User' , 'Table')->get()->where('id' , $reservation);
+        foreach ( $reser as $singleData ){
+            $data = [
+                'id'=> $singleData->id,
+                'first_name' => $singleData->first_name,
+                'last_name'=> $singleData->last_name,
+                'email'=>$singleData->email,
+                'tel_number'=>$singleData->tel_number,
+                'res_date' => $singleData->res_date,
+                'Restaurant' => $singleData->Category->name,
+                'category_id' => $singleData->Category->id,
+                'Table' => $singleData->Table->name,
+                'table_id' => $singleData->Table->id,
+                'guest_number' => $singleData->Table->guest_number,
+                'Location' => $singleData->Table->location,
+                'Status' => $singleData->status,
+            ];
+        };
+        $tables = Table::get()->where('category_id' , $data['category_id']);
+        return view('layouts.firstFormEdit' , compact('data' , 'tables'));
     }
 }
