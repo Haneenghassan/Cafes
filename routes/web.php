@@ -64,9 +64,17 @@ Route::get('/yourreservation' ,[LandingPage::class , 'reservation_show'])->name(
 
 Route::get('/{reservation}/LandingPageDelete' ,[LandingPage::class , 'delete'])->name('delete');
 
-Route::get('/{reservation}/editYourReservation' ,[LandingPage::class , 'editReservation'])->name('editYourReservation');
+Route::post('/{reservation}/editYourReservation' ,[LandingPage::class , 'editReservation'])->name('editYourReservation');
 
 Route::post('/{reservation}/editFormReservation' ,[LandingPage::class , 'updateReservation'])->name('updateReservation');
+
+
+
+
+Route::get('/{reservation}/firstFormEdit' ,[LandingPage::class , 'firstFormEdit'])->name('firstFormEdit');
+
+
+
 
 
 Route::get('/userReservation' , function(){
@@ -77,6 +85,8 @@ Route::get('/userReservation' , function(){
 
 Route::get('/reseForm/{category_id}/create',[LandingPage::class , 'create'])->name('reseForm-create');
 Route::post('/reservationStore' , [LandingPage::class , 'store'])->name('LandingPage.store');
+Route::post('/formPartTwo' , [LandingPage::class , 'sessionDate'])->name('goToPartTwo');
+Route::get('/formPartTwo/{category_id}/createPartTwo',[LandingPage::class , 'createPartTwo'])->name('formPartTwo-create');
 
 
 

@@ -1,5 +1,5 @@
 @include('layouts.header')
- 
+
 
 
 
@@ -30,7 +30,7 @@
             </header>
         </div>
       </div>
-   
+
 
 
       <div class="carousel-item">
@@ -48,7 +48,7 @@
             </header>
             </div>
         </div>
-    
+
 
 
 
@@ -62,19 +62,19 @@
                     @csrf
                     <input type="text" name="search" class="search" placeholder="Search...">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    
+
                 </form>
             </div>
         </header>
             </div>
         </div>
-   
+
 
 
     </div>
 
 
-    
+
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
@@ -102,8 +102,8 @@
         </header>
         <!-- Services-->
 
-        
-        
+
+
         <!-- Portfolio Grid-->
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
@@ -114,71 +114,46 @@
                     <h3 class="section-subheading text-muted"></h3>
                 </div>
                 <div class="row" style="margin-left: 3rem">
+                    @foreach ($restautant as $item)
+                    {{-- {{dd($restautant)}} --}}
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 1-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#">
-                              
-                                <img class="img-fluid rounded-circle" src="{{URL::asset('image/lebnani.jpeg')}}" alt="..." width="300px"  />
-                                <button class="btn btn-primary btn-l text-uppercase location " style="margin-left: 5rem">Book Here</button>
-                            </a>
+                            {{-- <a class="portfolio-link" data-bs-toggle="modal" href="#"> --}}
+
+                                <a href="{{route('reseForm-create' , ['category_id'=>$item['id']])}}">
+                                    <img class="rounded-circle" src="{{URL::asset("storage/image/$item->image")}}" alt="..." width="300px" height="300px" />
+                                </a>
+                                <a href="{{route('reseForm-create' , ['category_id'=>$item['id']])}}"><button class="btn btn-primary btn-l text-uppercase location " style="margin-left: 5rem">Book Here</button></a>
+                            {{-- </a> --}}
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading"></div>
                                 <div class="portfolio-caption-subheading text-muted"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 2-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#">
-                               
-                                <img class="img-fluid rounded-circle" src="{{URL::asset('image/jeeran.png')}}" alt="..." width="300px"  />
-                                <button class="btn btn-primary btn-l text-uppercase location" style="margin-left: 5rem">Book Here</button>
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading"></div>
-                                <div class="portfolio-caption-subheading text-muted"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <!-- Portfolio item 3-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#">
-                                {{-- <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div> --}}
-                               <img class="img-fluid rounded-circle" src="{{URL::asset('image/arjw.png ')}}" alt="..." width="300px" />
-                               <button class="btn btn-primary btn-l text-uppercase location" style="margin-left: 5rem">Book Here</button>
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading"></div>
-                                <div class="portfolio-caption-subheading text-muted"></div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
-         
-       
+
+
         <div class="slider text-center">
             <h2 class="section-heading text-uppercase">Our Partners</h2>
             <section class="customer-logos slider">
-                <div class="slide"><img src="{{URL::asset('image/pepsi2.png')}}" alt="logo"></div>
-                <div class="slide"><img src="{{URL::asset('image/water2.png')}}" alt="logo"></div>
-                <div class="slide"><img src="{{URL::asset('image/alamed.png')}}" alt="logo"></div>
-                <div class="slide"><img src="{{URL::asset('image/mazaya1.png')}}"  alt="logo"></div>
-                <div class="slide"><img src="{{URL::asset('image/marai.png')}}" alt="logo"></div>
-                <div class="slide"><img src="{{URL::asset('image/down.png')}}" alt="logo"></div>
-                <div class="slide"><img src="{{URL::asset('image/redbull.png')}}" alt="logo"></div>
-                
+                <div class="slide"><img src="{{URL::asset('/storage/image/pepsi2.png')}}" alt="logo"></div>
+                <div class="slide"><img src="{{URL::asset('/storage/image/water2.png')}}" alt="logo"></div>
+                <div class="slide"><img src="{{URL::asset('/storage/image/alamed.png')}}" alt="logo"></div>
+                <div class="slide"><img src="{{URL::asset('/storage/image/mazaya1.png')}}"  alt="logo"></div>
+                <div class="slide"><img src="{{URL::asset('/storage/image/marai.png')}}" alt="logo"></div>
+                <div class="slide"><img src="{{URL::asset('/storage/image/down.png')}}" alt="logo"></div>
+                <div class="slide"><img src="{{URL::asset('/storage/image/redbull.png')}}" alt="logo"></div>
+
             </section>
-        </div>        
-    
+        </div>
+
         <script>
-        
+
         $(document).ready(function(){
             $('.customer-logos').slick({
                 slidesToShow: 6,
@@ -201,95 +176,15 @@
                 }]
             });
         });
-    
+
         </script>
-   
-      
-       
-         <!-- Team-->
-        {{-- <section class="page-section bg-light" id="team">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
-                    <h3 class="section-subheading text-muted"></h3>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="{{URL::asset('storage/image/assets/img/team/1.jpg')}}" alt="..." />
-                            <h4>Abdelmajied</h4>
-                            <p class="text-muted">Scram Master</p>
-                            
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="{{URL::asset('storage/image/assets/img/team/1.jpg')}}" alt="..." />
-                            <h4>Hanen</h4>
-                            <p class="text-muted">Developer</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="{{URL::asset('storage/image/assets/img/team/2.jpg')}}" alt="..." />
-                            <h4>Karam</h4>
-                            <p class="text-muted">Prodact Owner</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="{{URL::asset('storage/image/assets/img/team/3.jpg')}}" alt="..." />
-                            <h4>Salwa</h4>
-                            <p class="text-muted">Developer</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted"></p></div>
-                </div>
-            </div>
-        </section> --}}
-        <!-- Services   -->
-        {{-- <section class="page-section" id="services">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Services</h2>
-                    <h3 class="section-subheading text-muted"></h3>
-                   </div>
-                <div class="row text-center">
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-3x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-solid fa-utensils fa-stack-1x fa-inverse"></i>
-=                        </span>
-                        <h4 class="my-3">Best Coffee & Resturants</h4>
-                        <p class="text-muted"></p>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-3x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="my-3">Secure Reservation</h4>
-                        <p class="text-muted"></p>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-3x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="my-3">Web Security</h4>
-                        <p class="text-muted"></p>
-                    </div>
-                </div>
-            </div>
-        </section> --}}
-   
-        <!-- Footer-->
+
+
+
 
         @include('layouts.footer')
-    
-       
+
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

@@ -1,9 +1,12 @@
 @include('layouts.header')
 
 
+@if (auth()->check())
 
 <h1>Your Reservation</h1>
-@if (auth()->check())
+
+
+
 <div class="container-fluid pt-4 px-4" style="margin-bottom: 30px;">
      <div class="row g-4">
          <div class="col-12">
@@ -37,7 +40,7 @@
                                      <th scope="col">{{$item['Guest']}}</th>
                                      <th scope="col">{{$item['Location']}}</th>
                                      <th scope="col" id="change">{{$item['StatusRes']}}</th>
-                                     <th scope="col"><a href="{{route('editYourReservation' , ['reservation'=>$item['id']])}}"><button style="background-color: green; color:white; padding:5px; border-radius:4px">Edit</button></a></th>
+                                     <th scope="col"><a href="{{route('firstFormEdit' , ['reservation'=>$item['id']])}}"><button style="background-color: green; color:white; padding:5px; border-radius:4px">Edit</button></a></th>
                                      <th scope="col"><a href="{{route('delete' , ['reservation'=>$item['id']])}}"><button style="background-color: red; color:white; padding:5px; border-radius:4px">Delete</button></a></th>
                                  </tr>
                             @endif
@@ -55,4 +58,7 @@
     {{view('auth.login')}}
 
 @endif
+
+@include('layouts.footer')
+
     </body>
