@@ -57,7 +57,8 @@
             height: 100vh;
             overflow-y: auto;
             transition: 0.5s;
-            z-index: 999;        }
+            z-index: 999;     
+           }
         input {
             background-color: #fff !important;
         }
@@ -87,9 +88,9 @@
        <h1>Reservation</h1>
 
 
-       <div class="container-fluid pt-4 px-4" style="margin-bottom: 30px;">
+       <div class="container pt-4 px-4 " style="margin-bottom: 30px;">
             <div class="row g-4">
-                <div class="col-12">
+                <div class="col-12 offset-md-1">
                     <div class="bg-secondary rounded h-100 p-4" style="background-color: #fff !important; ">
                         <h5 class="mb-4">Accepted Table</h5>
                         <div class="table-responsive">
@@ -135,9 +136,9 @@
         </div>
 
 
-        <div class="container-fluid pt-4 px-4" style="margin-bottom: 30px;">
+        <div class="container pt-4 px-4" style="margin-bottom: 30px;">
             <div class="row g-4">
-                <div class="col-12">
+                <div class="col-12 offset-md-1">
                     <div class="bg-secondary rounded h-100 p-4" style="background-color: #fff !important; ">
                         <h5 class="mb-4">Pending Table</h5>
                         <div class="table-responsive">

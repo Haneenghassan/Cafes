@@ -87,7 +87,9 @@
 
 
         <h1>categories</h1>
-            <div class="col-sm-12 col-xl-6">
+        <div class="container pt-4 px-4" style="margin-bottom: 30px;">
+        <div class="row g-4">
+            <div class="col-12 offset-md-1">
                 <div class="bg-secondary rounded h-100 p-4" style="background-color: #fff !important; ">
                     <h5 class="mb-4">Edit Restaurant</h5>
                     <form action="{{ route('admin.category.update' , ['category'=>$cat['id']]) }}" method="post" enctype="multipart/form-data" files=true>
@@ -113,6 +115,8 @@
                     </form>
                 </div>
             </div>
+        </div>
+        </div>
 
 </body>
 

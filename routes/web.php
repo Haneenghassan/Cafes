@@ -69,8 +69,8 @@ Route::get('/{reservation}/editYourReservation' ,[LandingPage::class , 'editRese
 Route::post('/{reservation}/editFormReservation' ,[LandingPage::class , 'updateReservation'])->name('updateReservation');
 
 
-Route::get('/userReservation' , function(){
-    return view('layouts.userReservation');
+Route::get('/reservation' , function(){
+    return view('layouts.reservation');
 });
 
 
@@ -94,6 +94,14 @@ Route::middleware(['auth' , 'admin'])->name('admin.')->prefix('admin')->group(fu
     Route::get('/user/{user}' , [UserController::class , 'destroy'])->name('user-destroy');
     Route::get('/user/{user}' , [UserController::class , 'update'])->name('user-update');
 });
+
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
 Route::post('/search' , [Search::class , 'search'])->name('search');
 

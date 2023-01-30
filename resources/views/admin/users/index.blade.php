@@ -90,9 +90,9 @@
 
         <h1>Users</h1>
 
-        <div class="container-fluid pt-4 px-4" style="margin-bottom: 30px;">
+        <div class="container pt-4 px-4" style="margin-bottom: 30px;">
             <div class="row g-4">
-                <div class="col-12">
+                <div class="col-12 offset-md-1">
                     <div class="bg-secondary rounded h-100 p-4" style="background-color: #fff !important; ">
                         <h5 class="mb-4">User Table</h5>
                         <div class="table-responsive">
@@ -130,9 +130,9 @@
         </div>
 
 
-        <div class="container-fluid pt-4 px-4" style="margin-bottom: 30px;">
+        <div class="container pt-4 px-4" style="margin-bottom: 30px;">
             <div class="row g-4">
-                <div class="col-12">
+                <div class="col-12 offset-md-1">
                     <div class="bg-secondary rounded h-100 p-4" style="background-color: #fff !important; ">
                         <h5 class="mb-4">User Table</h5>
                         <div class="table-responsive">
